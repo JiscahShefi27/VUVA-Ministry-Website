@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUVA MISSIONARY PRAYER REQUESTS</title>
+    {% load static %}
+    <style>
+	* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+           
+        }
+		body{
+            overflow-x: hidden;
+            background-color:#f4f4f4;
+
+            display:flex;
+            flex-direction:column;
+            min-height:100vh;   /* FULL SCREEN HEIGHT */
+        }
+		header {
+            background-color: #4e4c69;
+            color: #f4f4f4;
+            padding: 20px;
+            border-bottom: 1.2px solid #00d0d8;
+        }
+		.head1 {
+            display: flex;
+			justify-content: center;
+			text-align: center;
+			align-items: center;
+			flex-wrap: wrap; 
+        }
+		.head1 img {
+            height: 80px;
+            width: 80px;
+            margin: 10px 20px;
+            border-radius: 50%;
+            float: left;
+        }
+		.text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+		.text-block h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            font-weight: bold;
+        }
+
+        .text-block p {
+            margin: 0;
+            font-size: 1rem;
+        }
+		header.navbar {
+            display: flex;
+			flex-direction: column;
+            justify-content: center; /* Centers the nav-bar content */
+            align-items: center; /* Ensures vertical alignment */
+            padding: 20px 10px; /* Adds space above and below the nav-bar */
+            background-color: #4e4c69;
+            border-bottom: 1px solid #00d0d8;
+            width: 100%;
+        }
+
+        header.navbar {
+            display: flex;
+			flex-direction: column;
+            justify-content: center; /* Centers the nav-bar content */
+            align-items: center; /* Ensures vertical alignment */
+            padding: 20px 10px; /* Adds space above and below the nav-bar */
+            background-color: #4e4c69;
+            border-bottom: 1px solid #00d0d8;
+            width: 100%;
+        }
+		.nav-links {
+            display: flex; /* Makes the nav-links a flex container */
+            gap: 15px;
+			justify-content: center;
+            align-items: center; /* Ensures all items are vertically aligned */
+            list-style: none;
+        }
+		.nav-links li {
+            margin: 0; /* Removes inconsistent spacing */
+            display: flex; /* Allows the buttons to stay aligned */
+            align-items: center; /* Ensures consistent vertical alignment */
+        }
+		.nav-links a{
+			padding: 0.5rem 2rem;
+			display: block;
+			font-size: 1rem;
+			text-align: center;
+			color: #4e4c69;
+            border-radius: 15px;
+            background-color: #f4f4f4;
+			font-weight: bold;
+			line-height: 1.5; /* Ensures consistent height for text */
+            min-width: 120px;
+			text-decoration: none;
+		}
+		.nav-links a:hover {
+            background-color: #F1EAFF; /* Changes background color on hover */
+        }
+
+        .event{
+            height: 68vh;
+        }
+        .event h2{
+            margin-top: 10px;
+        }
+        .event-container{
+            display:flex;
+            flex-direction:column;   /* stack cards vertically */
+            align-items:center;
+            gap:20px;
+            margin-top:30px;
+        }
+
+        /* Horizontal Card */
+        .event-card{
+            display:flex;            /* MAIN MAGIC */
+            align-items:center;
+            background:white;
+            width:80%;
+            border-radius:12px;
+            padding:15px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            gap:20px;
+        }
+
+        /* Image Left */
+        .event-card img{
+            width:250px;
+            height:180px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        /* Content Right */
+        .event-content{
+            flex:1;
+        }
+
+        .curved-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            max-width: 600px;
+            background-color: white;
+            background-size: cover;
+            backdrop-filter: blur(5px);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+    
+        
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            color: #4e4c69;
+            margin-bottom: 5px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00d0d8;
+            box-shadow: 0 0 5px rgba(0, 208, 216, 0.5);
+        }
+        
+        .submit {
+            width: 500px;
+            background-color: #4e4c69;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            align: center;
+        }
+        
+        .submit:hover {
+            background-color: #6a5f9f;
+        }
+
+        footer {
+        background-color: #4e4c69;
+        color: white;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 75px;
+        padding: 15px;
+    }
+
+        @media (max-width: 992px) {
+            
+			
+        }
+
+        @media (max-width: 600px) {
+            header.navbar {
+                flex-direction: column;   /* stack navbar items */
+                padding: 15px 5px;
+            }
+			
+        }
+	</style>
+	</head>
+  <body>
+    <form action="{% url 'missionary_prayer_requests' %}" method="post">
+        {% load static %}
+      <header>
+        <div class="head1">
+            <img src="{% static 'logo1.png' %}" alt="Vuva Ministries Logo">
+            <div class="text-block">
+            <h1>Village Under Vision of Almighty Ministries</h1>
+            <p>He who dwells in the shelter of the most high will abide in the shadow of the Almighty</p>
+            </div>
+        </div>
+        </header>
+        <header class="navbar">
+        <nav>
+            <ul class="nav-links">
+            <li><a href="{% url 'missionary_home' %}" class="home">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        {% load static %}
+
+        <section class="curved-box">
+              <div class="container mx-auto mt-10 p-6 max-w-lg bg-white shadow-lg rounded-lg">
+                 <center> <h2 class="text-2xl font-semibold text-center mb-4">PRAYER REQUEST</h2></center>
+                  
+                      {% csrf_token %}
+                      
+                      <div class="mb-4">
+                          <label for="request" class="block text-gray-700 font-medium">Your Prayer Request</label>
+                          <textarea id="request" name="request" rows="4" class="request" required></textarea>
+                      </div>
+                      
+                      <button type="submit" class="submit">Submit Request</button>
+                  
+              </div>
+          </section>
+
+        </form>
+        <footer>
+        <p>&copy; 2026 Village Under Vision Of Almighty Ministries. All Rights Reserved.</p>
+    </footer>
+</html>

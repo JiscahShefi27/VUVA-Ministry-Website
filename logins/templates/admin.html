@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+   {% load static %}
+  <!-- 📌 Basic CSS reset + CSS variables for quick theme edits -->
+  <style>
+    :root {
+      --primary: #4F46E5;     /* Indigo */
+      --bg: #f7f5fc;          /* Light gray page background */
+      --sidebar: #4e4c69;     /* Slate sidebar */
+      --card-bg: #FFFFFF;     /* White cards */
+      --text: #111827;        /* Dark text */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: var(--bg);
+    }
+
+    /* ====== Layout ====== */
+    body {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: var(--sidebar);
+      color: #fff;
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      transition: left 0.3s ease;
+    }
+    .sidebar h1 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .sidebar a {
+      padding: 1rem 2rem;
+      display: block;
+      color: #cbd5e1; /* slate-300 */
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .sidebar a.active,
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* Main panel */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h2 {
+      font-size: 1.25rem;
+      color: var(--text);
+    }
+
+    /* Dashboard content */
+    .container {
+      padding: 2rem;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card h5 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .card h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #4e4c69;
+    }
+    .card-footer{
+      margin-top: 0.8rem;
+    }
+
+	.main1{
+		display: none;
+	}
+	
+
+    /* ====== Mobile tweaks ====== */
+    .toggle-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--sidebar);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        z-index: 20;
+      }
+      .sidebar.open {
+        left: 0;
+      }
+      .toggle-btn {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- 📂 Sidebar navigation -->
+  <nav class="sidebar">
+    <h1>VUVA Admin</h1>
+    <a href="#" class="active">Admin Dashboard</a>
+    <a href="{% url 'admin_users' %}">Users</a>
+    <a href="{% url 'admin_missionary' %}">Missionaries</a>
+    <a href="{% url 'admin_events' %}">Events</a>
+    <a href="{% url 'login' %}" class="text-danger">Logout</a>
+    
+  </nav>
+
+  <!-- 📈 Main content panel -->
+  <div class="main">
+    <header>
+      <button class="toggle-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+      <h2>Admin Dashboard</h2>
+    </header>
+
+    <main class="container">
+      <form action="{% url 'admin' %}" method="post">
+      {% csrf_token %}
+      <section class="grid">
+        <!-- STAT CARD EXAMPLES  -->
+        <div class="card">
+          <h5>Total Users</h3>
+          <h2>{{ total_users }}</h2>
+          <div class="card-footer">
+              <a href="{% url 'admin_viewusers' %}" class="text-white">View Users →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h5>Missionaries</h3>
+          <h2>{{ total_missionaries }}</h2>
+          <div class="card-footer">
+              <a href="{% url 'admin_viewmissionaries' %}" class="text-white">View Missionaries →</a>
+          </div>
+        </div>
+
+
+        
+      </section>
+    </form>
+      <!-- You can add tables, charts, or any other components below -->
+    </main>
+  </div>  
+      </section>
+
+      <!-- You can add tables, charts, or any other components below -->
+    </main>
+  </div>
+
+  <!-- 📜 (Optional) JS for future dynamic data -->
+  <script>
+    // Example: Fetch data from an API and populate the cards
+    // fetch('/api/metrics')
+    //   .then(res => res.json())
+    //   .then(data => { /* Update DOM here */ });
+  </script>
+</form>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUVA MISSIONARY REPORTS</title>
+    {% load static %}
+    <style>
+	* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+           
+        }
+		body{
+            overflow-x: hidden;
+            background-color:#f4f4f4;
+
+            display:flex;
+            flex-direction:column;
+            min-height:100vh;   /* FULL SCREEN HEIGHT */
+        }
+		header {
+            background-color: #4e4c69;
+            color: #f4f4f4;
+            padding: 20px;
+            border-bottom: 1.2px solid #00d0d8;
+        }
+		.head1 {
+            display: flex;
+			justify-content: center;
+			text-align: center;
+			align-items: center;
+			flex-wrap: wrap; 
+        }
+		.head1 img {
+            height: 80px;
+            width: 80px;
+            margin: 10px 20px;
+            border-radius: 50%;
+            float: left;
+        }
+		.text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+		.text-block h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            font-weight: bold;
+        }
+
+        .text-block p {
+            margin: 0;
+            font-size: 1rem;
+        }
+		header.navbar {
+            display: flex;
+			flex-direction: column;
+            justify-content: center; /* Centers the nav-bar content */
+            align-items: center; /* Ensures vertical alignment */
+            padding: 20px 10px; /* Adds space above and below the nav-bar */
+            background-color: #4e4c69;
+            border-bottom: 1px solid #00d0d8;
+            width: 100%;
+        }
+
+        header.navbar {
+            display: flex;
+			flex-direction: column;
+            justify-content: center; /* Centers the nav-bar content */
+            align-items: center; /* Ensures vertical alignment */
+            padding: 20px 10px; /* Adds space above and below the nav-bar */
+            background-color: #4e4c69;
+            border-bottom: 1px solid #00d0d8;
+            width: 100%;
+        }
+		.nav-links {
+            display: flex; /* Makes the nav-links a flex container */
+            gap: 15px;
+			justify-content: center;
+            align-items: center; /* Ensures all items are vertically aligned */
+            list-style: none;
+        }
+		.nav-links li {
+            margin: 0; /* Removes inconsistent spacing */
+            display: flex; /* Allows the buttons to stay aligned */
+            align-items: center; /* Ensures consistent vertical alignment */
+        }
+		.nav-links a{
+			padding: 0.5rem 2rem;
+			display: block;
+			font-size: 1rem;
+			text-align: center;
+			color: #4e4c69;
+            border-radius: 15px;
+            background-color: #f4f4f4;
+			font-weight: bold;
+			line-height: 1.5; /* Ensures consistent height for text */
+            min-width: 120px;
+			text-decoration: none;
+		}
+		.nav-links a:hover {
+            background-color: #F1EAFF; /* Changes background color on hover */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto; /* Centers the form vertically and horizontally */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4e4c69;
+        }
+
+        .container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #6b5b95;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .container button:hover {
+            background-color: #4e4c69;
+        }
+
+        .container a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #6b5b95;
+            font-size: 14px;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+        background-color: #4e4c69;
+        color: white;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 55px;
+        padding: 15px;
+    }
+
+        @media (max-width: 992px) {
+            
+			
+        }
+
+        @media (max-width: 600px) {
+            header.navbar {
+                flex-direction: column;   /* stack navbar items */
+                padding: 15px 5px;
+            }
+			
+        }
+	</style>
+	</head>
+  <body>
+    {% load static %}
+
+    <form action="{% url 'missionary_reports' %}"
+        method="POST"
+        enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+      <header>
+        <div class="head1">
+            <img src="{% static 'logo1.png' %}" alt="Vuva Ministries Logo">
+            <div class="text-block">
+            <h1>Village Under Vision of Almighty Ministries</h1>
+            <p>He who dwells in the shelter of the most high will abide in the shadow of the Almighty</p>
+            </div>
+        </div>
+        </header>
+        <header class="navbar">
+        <nav>
+            <ul class="nav-links">
+            <li><a href="{% url 'missionary_home' %}" class="home">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <div class="container">
+
+            <h1>REPORT</h1>
+            {% csrf_token %}
+            <p>
+                Missionary Name:
+                <b>{{ missionary.username }}</b>
+            </p>
+
+            <input type="file"
+                name="report_file"
+                accept=".pdf"
+                required>
+
+            <br><br>
+
+            <button type="submit">Submit Report</button>
+
+        </div>
+        </form>
+        <footer>
+        <p>&copy; 2026 Village Under Vision Of Almighty Ministries. All Rights Reserved.</p>
+    </footer>
+</html>

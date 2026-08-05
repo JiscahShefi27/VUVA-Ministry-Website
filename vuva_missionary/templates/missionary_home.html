@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>MISSIONARY HOME</title>
+    {% load static %}
+    <style>
+	* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+           
+        }
+		body{
+            overflow-x: hidden;
+		    background-color:#f4f4f4;
+		}
+		header {
+            background-color: #4e4c69;
+            color: #f4f4f4;
+            padding: 20px;
+            border-bottom: 1.2px solid #00d0d8;
+        }
+		.head1 {
+            display: flex;
+			justify-content: center;
+			text-align: center;
+			align-items: center;
+			flex-wrap: wrap; 
+        }
+		.head1 img {
+            height: 80px;
+            width: 80px;
+            margin: 10px 20px;
+            border-radius: 50%;
+            float: left;
+        }
+		.text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+		.text-block h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            font-weight: bold;
+        }
+
+        .text-block p {
+            margin: 0;
+            font-size: 1rem;
+        }
+		header.navbar {
+            display: flex;
+			flex-direction: column;
+            justify-content: center; /* Centers the nav-bar content */
+            align-items: center; /* Ensures vertical alignment */
+            padding: 20px 10px; /* Adds space above and below the nav-bar */
+            background-color: #4e4c69;
+            border-bottom: 1px solid #00d0d8;
+            width: 100%;
+        }
+		
+        /* Profile Menu */
+        .profile-menu{
+            position:relative;
+            margin-left:20px;
+        }
+
+        .profile-icon{
+            width:45px;
+            height:45px;
+            background:#ffffff;
+            color:#4e4c69;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            cursor:pointer;
+            box-shadow:0 2px 6px rgba(0,0,0,0.2);
+            font-size:18px;
+        }
+
+        /* Dropdown */
+        .dropdown-menu{
+            position:absolute;
+            right:0;
+            top:55px;
+            background:white;
+            width:220px;
+            border-radius:10px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.2);
+            padding:15px;
+            display:none;
+        }
+
+        .dropdown-menu h4{
+            margin-bottom:10px;
+            color:#4e4c69;
+        }
+
+        .dropdown-menu a{
+            text-decoration:none;
+            color:black;
+            display:block;
+            padding:8px 0;
+        }
+
+        .dropdown-menu a:hover{
+            color:#4e4c69;
+        }
+
+        .verse{
+            color: #4e4c69;
+            text-align: center;
+            margin-top: 21px;
+        }
+
+        .missonary_field {
+            display: flex;
+            justify-content: center;   /* center cards */
+            align-items: stretch;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;           /* responsive */
+        }
+
+        /* CARD DESIGN */
+        .card {
+            background: #ffffff;
+            border-radius: 15px;
+            width: 320px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        /* Hover Magic */
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+        }
+
+        /* Title */
+        .card h5 {
+            color: #4e4c69;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Image */
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        /* Footer Button */
+        .card-footer a {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #4e4c69;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        footer {
+        background-color: #4e4c69;
+        color: white;
+        font-size: 12px;
+        text-align: center;
+        padding: 8px 0;
+        margin-top: 15px;
+        height: 30px;
+    }
+
+        @media (max-width: 992px) {
+            
+			
+        }
+
+        @media (max-width: 600px) {
+            header.navbar {
+                flex-direction: column;   /* stack navbar items */
+                padding: 15px 5px;
+            }
+			
+        }
+	</style>
+	</head>
+  <body>
+    <form action="{% url 'missionary_home' %}" method="post">
+      <header>
+        <div class="head1">
+            <img src="{% static 'logo1.png' %}" alt="Vuva Ministries Logo">
+            <div class="text-block">
+            <h1>Village Under Vision of Almighty Ministries</h1>
+            <p>He who dwells in the shelter of the most high will abide in the shadow of the Almighty</p>
+            </div>
+            
+            <div class="profile-menu">
+
+            <div class="profile-icon" onclick="toggleMenu()">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div id="dropdownMenu" class="dropdown-menu">
+                <h4>{{ missionary.username }}</h4>
+                <hr>
+                <a href="{% url 'login' %}">Logout</a>
+            </div>
+
+        </div>
+        </div>
+        </header>
+    
+        <section class="verse">
+            <h3 id="verse"></h3>
+            <script>
+                const verses = [
+                "John 3:16 - For God so loved the world that He gave His one and only Son...",
+                "Psalm 23:1 - The Lord is my shepherd, I shall not want.",
+                "Philippians 4:13 - I can do all things through Christ who strengthens me.",
+                "Proverbs 3:5 - Trust in the Lord with all your heart and lean not on your own understanding.",
+                "Jeremiah 29:11 - For I know the plans I have for you, declares the Lord...",
+                "Psalm 145:9 - The Lord is good to all; he has compassion on all he has made.",
+                "Isaiah 26:3 - You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+                "1 Chronicles 16:34 - Give thanks to the Lord, for he is good; his love endures forever.",
+                "Psalm 100:5 - For the Lord is good and his love endures forever; his faithfulness continues through all generations.",
+                "James 1:17 - Every good and perfect gift is from above, coming down from the Father of the heavenly lights, who does not change like shifting shadows.",
+                "2 Samuel 7:28 - Sovereign Lord, you are God! Your covenant is trustworthy, and you have promised these good things to your servant.",
+                "Psalm 19:7 - The law of the Lord is perfect, refreshing the soul. The statutes of the Lord are trustworthy, making wise the simple.",
+                "Psalm 34:8 - Taste and see that the Lord is good; blessed is the one who takes refuge in him.",
+                "Nahum 1:7 - The Lord is good, a refuge in times of trouble. He cares for those who trust in him.",
+                "Psalm 84:11 - For the Lord God is a sun and shield; the Lord bestows favor and honor; no good thing does he withhold from those whose walk is blameless.",
+                "Isaiah 54:10 - Though the mountains be shaken and the hills be removed, yet my unfailing love for you will not be shaken nor my covenant of peace be removed, says the LORD, who has compassion on you.",
+                "Ephesians 3:20-21 - Now to him who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us, to him be glory in the church and in Christ Jesus throughout all generations, for ever and ever! Amen.",
+                "Isaiah 40:29 - He gives strength to the weary and increases the power of the weak.",
+                "Isaiah 40:31 - But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+                "Isaiah 41:10 - So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+                "Isaiah 43:2 - When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you...",
+                "Jeremiah 17:9 - The heart is deceitful above all things, and desperately wicked: who can know it?",
+                "Jeremiah 29:11 - For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, to give you an expected end.",
+                "Jeremiah 30:8 - For it shall come to pass in that day, saith the Lord of hosts, that I will break his yoke from off thy neck, and will burst thy bonds, and strangers shall no more serve themselves of him.",
+                "Jeremiah 31:3 - The Lord hath appeared of old unto me, saying, Yea, I have loved thee with an everlasting love: therefore with lovingkindness have I drawn thee.",
+                "Jeremiah 31:4 - Again I will build thee, and thou shalt be built, O virgin of Israel: thou shalt again be adorned with thy tabrets, and shalt go forth in the dances of them that make merry.",
+                "Jeremiah 31:16 - Thus saith the Lord; Refrain thy voice from weeping, and thine eyes from tears: for thy work shall be rewarded, saith the Lord; and they shall come again from the land of the enemy.",
+                "Jeremiah 31:22 - How long wilt thou go about, O thou backsliding daughter? for the Lord hath created a new thing in the earth, A woman shall compass a man.",
+                "Jeremiah 31:26 - Upon this I awaked, and beheld; and my sleep was sweet unto me.",
+                "Jeremiah 33:3 - Call unto me, and I will answer thee, and show thee great and mighty things, which thou knowest not.",
+                "Jeremiah 33:6 - Behold, I will bring it health and cure, and I will cure them, and will reveal unto them the abundance of peace and truth.",
+                "Malachi 3:6 - I am the Lord your God and I never change.",
+                "Psalm 103:8 - I am full of mercy and grace and I overflow with love.",
+                "Psalm 33:11 - The intentions of My heart will remain steadfast forever.",
+                "Genesis 1:27-28 - I created you in My own image with My special blessing.",
+                "Ephesians 1:4-5 - I chose you to be adopted into My family before creation.",
+                "Colossians 1:12-13 - I delivered you from darkness into the kingdom of My beloved Son.",
+                "John 3:16 - I have given you eternal life because you have believed in Jesus Christ.",
+                "Galatians 4:6 - I sent the Spirit of My Son into your heart so you could call Me Father.",
+                "Galatians 3:29 - Since you are in Christ, I have made you an heir of all My promises.",
+                "Ezekiel 36:26-27 - I have given you a new heart and put My own Spirit in you.",
+                "Jeremiah 29:11 - My plan for your future is filled with hope.",
+                "Philippians 2:13 - I am at work in your life through the desires of your heart.",
+                "Psalm 23:2 - I will give you rest in green pastures and lead you to still waters.",
+                "John 3:34 - I give My Spirit in unlimited measure.",
+                "Psalm 37:24 - I will take hold of your hand to keep you from falling.",
+                "Hebrews 13:20-21 - I will provide every good thing you need to do My will.",
+                "Proverbs 3:11-12 - I will discipline you in love, as a father who loves His children.",
+                "2 Corinthians 12:9 - My power will rest on you when you are weak.",
+                "Numbers 6:24 - I will bless your life and keep watch over you always.",
+                "Jeremiah 29:13 - If you search for Me with all your heart, you will find me.",
+                "Psalm 97:10 - I will shield your life and deliver you from the wicked.",
+                "1 Peter 5:7 - Cast all your worries on Me, for I really care about you.",
+                "1 Corinthians 10:13 - I will not let you be tested beyond what you can endure.",
+                "1 Corinthians 13:4-7 - My love will persevere through every situation.",
+                "Psalm 84:11 - I will not withhold anything good from those with an upright heart.",
+                "Psalm 146:9 - I look after foreigners and I help the fatherless and the widow.",
+                "Psalm 116:6 - I will guard those who have a childlike heart.",
+                "Romans 8:37 - You are more than a conqueror through My love in Jesus Christ.",
+                "1 Peter 5:4 - When Jesus appears, you will receive a crown of glory that will never dim.",
+                "Matthew 13:43 - At the end of the age, My righteous ones will shine like the sun in My kingdom.",
+                "Joshua 23:14 - Not one of My promises will ever fail you.",
+                "Psalms 103:19 - I am seated in the heavens and My kingdom reigns over all.",
+                "Isaiah 46:10 - All My plans will be fulfilled, for I know the end from the beginning.",
+                "Jeremiah 1:5 - I knew you before you were born and I designed you for My purposes.",
+                "Colossians 1:21-22 - You are holy and free from blame because of Jesus Christ’s death.",
+                "Isaiah 44:22 - I have blotted out your sins and dissolved them like the mist.",
+                "Ephesians 1:13-14 - I have sealed you with My Spirit to guarantee your coming inheritance.",
+                "2 Corinthians 6:18 - I will be a real Father to you.",
+                "Psalm 32:8 - I will look after you and teach you the way that is best.",
+                "Proverbs 3:5-6 - Trust in Me with all your heart and I will guide you.",
+                "2 Thessalonians 3:16 - I will give you peace at all times and in every situation.",
+                "Psalm 91:15 - Call on Me when you are in trouble and I will rescue you.",
+                "Psalm 61:3 - I am your shelter and a place of safety from your enemies.",
+                "Isaiah 64:4 - If you wait for Me, I will work on your behalf.",
+                "1 Corinthians 13:8 - My love will never fail you.",
+                "Psalm 23:1 - I am your Shepherd and I will meet all your needs.",
+                "John 10:29 - I will keep you safe because no one can snatch you out of My hand.",
+                "Psalm 147:3 - I will heal your broken heart and mend all your wounds.",
+                "Matthew 5:4 - I will bless you in times of mourning with My comfort.",
+                "2 Corinthians 3:17 - You will find freedom wherever My Spirit dwells.",
+                "1 John 4:16 - You can know and depend on the love that I have for you.",
+                "Psalm 9:10 - You can trust in Me for I will never forsake you.",
+                "1 Corinthians 9:24-25 - An eternal crown awaits you at the finish line, so keep running your race.",
+                "Matthew 25:34 - I prepared a kingdom inheritance for you when I created the world.",
+                "Psalm 116:15 - It is precious for Me to see My faithful ones come home.",
+                "Deuteronomy 4:31 - I will not forget My promises because I am a merciful God.",
+                "Psalm 145:13 - My kingdom is everlasting and My dominion will endure forever.",
+                "Psalm 119:89 - My eternal Word is anchored in the heavens.",
+                "Psalm 116:5 - I am a gracious God who is righteous and full of mercy.",
+                "Revelation 4:11 - I created all things for My pleasure.",
+                "Isaiah 64:8 - I am your Father and you are My handiwork.",
+                "Isaiah 46:4 - I will protect and carry you all the days of your life.",
+                "Romans 8:29 - I predestined you to be conformed to the image of My Son.",
+                "Colossians 2:13-14 - I forgave all your sins and canceled your debt.",
+                "Ephesians 2:5-6 - I made you alive with Christ and seated you with Him in the heavenly places.",
+                "Psalm 40:5 - My thoughts toward you are too many to count.",
+                "Psalm 23:3 - I restore your soul and lead you in paths of righteousness.",
+                "Jeremiah 24:6 - My eyes are watching over you for your good.",
+                "Ephesians 2:19 - You are no longer a stranger but a member of My household.",
+                "Psalm 91:9-10 - If you make Me your refuge, no harm will overtake you.",
+                "Psalm 1:1-3 - When you delight in My Word, you will prosper in all you do.",
+                "Deuteronomy 33:12 - You are My beloved and dwell in My protection.",
+                "James 4:8 - Draw near to Me, and I will draw near to you.",
+                "Isaiah 12:2 - I am your strength and your song, your salvation.",
+                "2 Samuel 22:36 - My gentleness will make you great.",
+                "Ephesians 6:9 - I show no favoritism and reward all who do good.",
+                "James 2:5 - I chose the poor in the world to be rich in faith.",
+                "James 1:5 - I give wisdom generously to all who ask.",
+                "Ephesians 3:17-19 - I want you to be rooted in My love and know its depth.",
+                "Psalm 40:1 - I hear your cries and will set your feet on solid ground.",
+                "2 Timothy 2:13 - Even if you are faithless, I remain faithful.",
+                "Luke 12:31 - Seek My kingdom, and all your needs will be provided.",
+                "John 16:12-13 - My Spirit will guide you into all truth.",
+                "Revelation 21:4 - I will wipe away every tear and remove all pain.",
+                "Isaiah 51:11 - You will return with joy and everlasting gladness.",
+                "Hebrews 6:17-18 - My promises are unchanging and a secure anchor for you.",
+                "Job 33:4 - My Spirit has made you, and My breath gives you life.",
+                "Psalm 139:7-10 - You cannot flee from My presence, for I am always with you.",
+                "Psalm 37:18 - I know your days and will secure your inheritance forever.",
+                "Psalm 139:13 - I knit you together in your mother's womb.",
+                "Luke 12:32 - It pleases Me to give you the kingdom.",
+                "Numbers 6:25 - I will make My face shine on you and give you peace.",
+                "Psalm 119:105 - My Word is a lamp to your feet and a light to your path.",
+                "Matthew 8:16-17 - I took your infirmities and carried your diseases.",
+                "Romans 8:26 - My Spirit helps you in your weakness and intercedes for you.",
+                "Philippians 4:13 - You can do all things through Christ who strengthens you.",
+                "Deuteronomy 31:6 - Be strong and courageous, for I am with you.",
+                "Psalm 46:1 - I am your refuge and strength, an ever-present help in trouble.",
+                "Psalm 12:7 - I will protect you forever from the wicked.",
+                "Psalm 5:3 - I hear your voice in the morning when you pray to Me.",
+                "John 16:15 - All that is Mine is yours through My Spirit.",
+                "Psalm 23:6 - My goodness and mercy will follow you all the days of your life.",
+                "Isaiah 54:13 - I will teach your children, and they will have great peace.",
+                "Hebrews 6:10 - I will not forget the love you have shown in serving others.",
+                "Proverbs 19:17 - I will reward your kindness to the poor.",
+                "Deuteronomy 28:2 - My blessings will overtake you if you obey Me.",
+                "Matthew 6:8 - I know what you need before you ask.",
+                "Isaiah 61:1 - I sent My Son to heal your broken heart and set you free.",
+                "2 Peter 2:9 - I know how to rescue the godly from trials.",
+                "Psalm 30:5 - My favor lasts a lifetime, and joy comes in the morning.",
+                "Matthew 5:6 - I will fill those who hunger and thirst for righteousness.",
+                "Matthew 13:11 - I have given you the secrets of My kingdom.",
+                "Revelation 2:7 - To those who overcome, I will give the right to eat from the tree of life.",
+                "1 Corinthians 2:9 - No eye has seen or ear heard what I have prepared for you.",
+                "Matthew 5:8 - Blessed are the pure in heart, for they will see Me.",
+                "Philippians 1:6 - I will complete the good work I started in you.",
+                "Titus 1:2 - I promised you eternal life before time began.",
+                "Psalm 100:5 - My love endures forever, and My faithfulness continues.",
+                "Psalm 36:6 - I am righteous, just, and unfailing in all My ways.",
+                "Isaiah 55:10-11 - My Word will not return empty but will accomplish My purpose.",
+                "Psalm 145:16 - I open My hand and satisfy your desires.",
+                "Psalm 103:13 - I have compassion on you as a father has on his children.",
+                "1 Samuel 12:22 - I will not forsake you because you are Mine.",
+                "Psalm 63:3 - My love is better than life, and your lips will glorify Me.",
+                "Hebrews 10:10 - You are made holy through the sacrifice of Jesus.",
+                "Psalm 103:12 - I removed your sins as far as the east is from the west.",
+                "Galatians 5:1 - I set you free so that you can live in freedom.",
+                "2 Corinthians 1:21-22 - I anointed you and put My Spirit in your heart as a guarantee.",
+                "Psalm 36:7 - All of mankind can find protection in the shadow of My wings.",
+                "2 Timothy 4:18 - I will rescue you from evil and safely deliver you into My kingdom.",
+                "2 Timothy 4:8 - There is a crown of righteousness waiting for everyone who loves My Son.",
+                "Hebrews 10:36 - If you persist and do My will, you will receive what I have promised.",
+                "Psalm 33:6 - I made the heavens by My Word and I breathed the stars into existence.",
+                "Deuteronomy 7:9 - I am faithful to keep My covenant of kindness to a thousand generations.",
+                "Psalm 68:5 - I am a father to the fatherless and I defend the cause of widows.",
+                "Psalm 94:14 - I will not abandon My own inheritance.",
+                "Exodus 15:26 - I am the Lord your God who heals all of your diseases.",
+                "Jeremiah 31:3 - My love for you will last forever.",
+                "Matthew 7:11 - I give good gifts to My children when they ask.",
+                "Hebrews 2:11 - Jesus is not ashamed to be called your big brother.",
+                "Micah 7:18 - I forgive sins and I love to show mercy.",
+                "Romans 5:5 - I have poured My love into your heart through My Spirit.",
+                "Jeremiah 31:33 - I have put My law within you and have written it on your heart.",
+                "Philippians 4:19 - I will meet your every need through My eternal riches in Jesus Christ.",
+                "Psalm 28:9 - I will shepherd My inheritance and carry them forever.",
+                "Nehemiah 8:10 - Do not be sad, for My joy is your strength.",
+                "1 John 4:18 - My perfect love will banish fear from your heart.",
+                "Psalm 138:7 - I will save you in the midst of your troubles.",
+                "Psalm 5:11 - I will blanket My protection over all who trust in Me.",
+                "Ephesians 6:11 - My armor will help you stand against the plans of the enemy.",
+                "Psalm 30:11 - I will turn your mourning into dancing and surround you with joy.",
+                "Jeremiah 30:17 - I will restore your health and heal all your hurts.",
+                "Habakkuk 3:19 - I will strengthen you with feet like a deer so you can reach great heights.",
+                "Isaiah 58:7-8 - If you share with the needy, My glory will guard your back.",
+                "Hebrews 4:9-10 - If you enter into My rest, you will find rest from all your striving.",
+                "Deuteronomy 4:7 - I am near to you whenever you cry out.",
+                "Psalm 86:7 - When problems arise, call to Me and I will answer you.",
+                "Matthew 6:25-26 - Don’t worry, I will take care of you.",
+                "Revelation 3:12 - Those who overcome will be pillars in My temple forever.",
+                "1 John 3:2 - You are My children now and you will be just like Jesus when He appears.",
+                "Revelation 22:4 - One day, you will see My face and My name will be on your forehead.",
+                "Numbers 23:19 - Every promise that I make is true, for I do not lie or change My mind.",
+                "Psalm 19:1 - The heavens declare My glory and reveal My handiwork.",
+                "Psalm 47:7-9 - I rule the earth and all the kings belong to Me.",
+                "Psalm 33:4 - You can trust in My faithfulness because My Word is true.",
+                "1 Chronicles 16:34 - I am good and My mercy is everlasting.",
+                "Psalm 71:6 - I have cared for you from the moment you were born.",
+                "Matthew 10:30 - I have even numbered each hair on your head.",
+                "Ephesians 3:12 - Through faith in Christ, you can boldly approach Me with confidence.",
+                "1 John 1:7 - If you walk in the light, the blood of My Son Jesus will cleanse you from all sin.",
+                "Psalm 56:11 - Trust in Me, and do not be afraid of what others can do to you.",
+                "Proverbs 14:26 - I will be your security and a safe place for your children.",
+                "Psalm 3:3 - I am your shield, your glory, and the lifter of your head.",
+                "Luke 11:13 - I will gladly give the Holy Spirit to those who will ask.",
+                "Psalm 103:2-3 - Forgiveness and healing are among My many benefits.",
+                "Psalm 37:7-9 - If you rest in Me and wait patiently, you will inherit the land.",
+                "Isaiah 40:29 - I give power to the exhausted and I strengthen the weak.",
+                "Romans 8:31 - If I am for you, no one can stand against you.",
+                "Proverbs 19:21 - Though you have many plans, My purpose will be fulfilled.",
+                "Matthew 18:19 - If two of you agree in prayer, I will do whatever you ask.",
+                "Psalm 92:13-14 - I will make you fruitful in your old age.",
+                "Job 5:17-18 - Do not despise My discipline, for in time, I will heal your wounds.",
+                "Isaiah 61:1-2 - I bind up the brokenhearted and I will comfort all who mourn.",
+                "Isaiah 66:13 - I will comfort you just like a mother would.",
+                "Psalm 30:5 - Your sadness last for a night, but joy will come in the morning.",
+                "Hebrews 13:16 - I am pleased when you share with others.",
+                "1 John 5:18 - I will keep you safe from the evil one.",
+                "Matthew 5:7 - I will show mercy to those who are merciful to others.",
+                "Psalm 5:12 - I bless My righteous ones and shield them with My favor.",
+                "Psalm 23:5 - I will anoint you with oil so your cup overflows.",
+                "Luke 10:20 - You can celebrate because your name is written in heaven.",
+                "John 14:2 - There is a special room in My house prepared just for you.",
+                "2 Peter 3:13 - You can look forward to the new heaven and earth that I have promised.",
+                "Genesis 1:1 - I spoke the universe into existence.",
+                "Acts 17:24-25 - I give life and breath to all things.",
+                "Zephaniah 3:17 - You can rest in My love, for I have power to save you.",
+                "Psalm 139:17-18 - My thoughts toward you outnumber the sand on the seashore.",
+                "Psalm 139:16 - All the days of your life are written in My special book.",
+                "Deuteronomy 1:31 - I will carry you in My arms just like a father carries his child.",
+                "Isaiah 61:7 - I will give you a double portion of your inheritance in exchange for your shame.",
+                "Ephesians 2:4-5 - I made you alive in Jesus simply because I love you.",
+                "Hebrews 8:12 - I will forgive your sins and then forget them.",
+                "2 Corinthians 5:17 - Your old life has ended and now everything is new in Christ.",
+                "Acts 17:27 - Reach out and you will touch Me, for I am not far from you.",
+                "Isaiah 65:24 - Before you even call out to Me, I will answer you.",
+                "Isaiah 30:21 - I will be the voice behind you, guiding you in the way you should go.",
+                "Psalm 18:34-35 - I will train you for battle with My shield of salvation.",
+                "2 Thessalonians 3:3 - I will be faithful to give you My strength and protection.",
+                "Deuteronomy 33:27 - You will find safety in My everlasting arms.",
+                "Psalm 68:19 - I carry your burdens every day.",
+                "1 Peter 3:9 - I have called you to inherit My blessing.",
+                "Proverbs 3:9-10 - If you honor Me with your firstfruits, you will overflow with abundance.",
+                "Isaiah 58:7-8 - If you help the poor, your light will shine like the dawn.",
+                "Isaiah 40:31 - If you wait for Me, I will renew your strength.",
+                "Psalm 4:8 - I will give you a peaceful sleep surrounded by safety.",
+                "Psalm 103:5 - I will enrich your life and renew your youth like the eagle’s.",
+            ];
+    
+        
+                // Get the current date
+                const currentDate = new Date();
+        
+                // Calculate the index based on the day of the year
+                const dayOfYear = Math.floor(
+                (currentDate - new Date(currentDate.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+                );
+    
+        
+                // Get the verse for today
+                const verseOfTheDay = verses[dayOfYear % verses.length];
+        
+                // Display the verse
+                document.getElementById("verse").textContent = verseOfTheDay;
+
+                function toggleMenu(){
+                    const menu = document.getElementById("dropdownMenu");
+                    menu.style.display =
+                        menu.style.display === "block" ? "none" : "block";
+                }
+
+                /* close when clicking outside */
+                window.onclick = function(e){
+                    if(!e.target.closest('.profile-menu')){
+                        document.getElementById("dropdownMenu").style.display="none";
+                    }
+                }
+
+
+          </script>
+        </section>
+        <section class="missonary_field">
+
+            <div class="card">
+                <h5>MISSION REPORTS</h5>
+                <img src="{% static 'prayerrequests.png' %}">
+                <div class="card-footer">
+                    <a href="{% url 'missionary_reports' %}">Send</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5>PRAYER REQUESTS</h5>
+                <img src="{% static 'missionaryreports.png' %}">
+                <div class="card-footer">
+                    <a href="{% url 'missionary_prayer_requests' %}">Send</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5>VUVA EVENTS</h5>
+                <img src="{% static 'eventupload.png' %}">
+                <div class="card-footer">
+                    <a href="{% url 'vuva_events' %}">View</a>
+                </div>
+            </div>
+
+        </section>
+    <footer>
+        <p>&copy; 2026 Village Under Vision Of Almighty Ministries. All Rights Reserved.</p>
+    </footer>
+     </form>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUVA ABOUT US</title>
+    {% load static %}
+    <style>
+	* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+           
+        }
+		body{
+            overflow-x: hidden;
+		    background-color:#f4f4f4;
+		}
+		header {
+            background-color: #4e4c69;
+            color: #f4f4f4;
+            padding: 20px;
+            border-bottom: 1.2px solid #00d0d8;
+        }
+		.head1 {
+            display: flex;
+			justify-content: center;
+			text-align: center;
+			align-items: center;
+			flex-wrap: wrap; 
+        }
+		.head1 img {
+            height: 80px;
+            width: 80px;
+            margin: 10px 20px;
+            border-radius: 50%;
+            float: left;
+        }
+		.text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+		.text-block h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            font-weight: bold;
+        }
+
+        .text-block p {
+            margin: 0;
+            font-size: 1rem;
+        }
+		header.navbar {
+            display: flex;
+			flex-direction: column;
+            justify-content: center; /* Centers the nav-bar content */
+            align-items: center; /* Ensures vertical alignment */
+            padding: 20px 10px; /* Adds space above and below the nav-bar */
+            background-color: #4e4c69;
+            border-bottom: 1px solid #00d0d8;
+            width: 100%;
+        }
+		.nav-links {
+            display: flex; /* Makes the nav-links a flex container */
+            gap: 15px;
+			justify-content: center;
+            align-items: center; /* Ensures all items are vertically aligned */
+            list-style: none;
+        }
+		.nav-links li {
+            margin: 0; /* Removes inconsistent spacing */
+            display: flex; /* Allows the buttons to stay aligned */
+            align-items: center; /* Ensures consistent vertical alignment */
+        }
+		.nav-links a{
+			padding: 0.5rem 2rem;
+			display: block;
+			font-size: 1rem;
+			text-align: center;
+			color: #4e4c69;
+            border-radius: 15px;
+            background-color: #f4f4f4;
+			font-weight: bold;
+			line-height: 1.5; /* Ensures consistent height for text */
+            min-width: 120px;
+			text-decoration: none;
+		}
+		.nav-links a:hover {
+            background-color: #F1EAFF; /* Changes background color on hover */
+        }
+
+        /* ABOUT US SECTION */
+        .aboutus {
+            padding: 70px 10%;
+            background: #ffffff;
+        }
+
+        /* MAIN LAYOUT */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        /* IMAGE */
+        .about-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* TEXT CONTENT */
+        .about-content h2 {
+            font-size: 38px;
+            color: #4e4c69;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        /* MISSION & VISION */
+        .statement-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .statement-box {
+            flex: 1;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: 0.4s;
+        }
+
+        .statement-box:hover {
+            transform: translateY(-8px);
+        }
+
+        /* COLORS */
+        .mission {
+            background: linear-gradient(135deg, #4e4c69, #6d6a95);
+        }
+
+        .vision {
+            background: linear-gradient(135deg, #00a8a8, #00d0d8);
+        }
+
+        .statement-box h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+          background-color: #4e4c69;
+          color: white;
+          text-align: center;
+          padding: 10px 0;
+          margin-top: 20px;
+          height: 35px;
+      }
+
+      @media (max-width: 992px) {
+            .nav-links {
+                gap: 8px;
+            }
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 18px;
+                min-width: 90px;
+            }
+			
+        }
+
+
+
+        @media (max-width: 600px) {
+            header.navbar {
+                flex-direction: column;   /* stack navbar items */
+                padding: 15px 5px;
+            }
+            .nav-links {
+                flex-direction: column;   /* stack links vertically */
+                gap: 8px;
+                width: 100%;
+            }
+            .nav-links a {
+                font-size: 13px;
+                padding: 8px 15px;
+                min-width: 120px;
+            }
+		
+        }
+
+        @media (max-width: 768px) {
+            .donate {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .donate .content, .donate .image-container {
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .donate .image-container img {
+                width: 60%;
+                margin-top: 20px;
+            }
+            .donate {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .donate .content, .support .image-container {
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .donate .image-container img {
+                width: 60%;
+                margin-top: 20px;
+            }
+            .contact-container {
+            flex-direction: column;
+          }
+
+          .contact-map {
+            width: 100%;
+          }
+            }
+	</style>
+	</head>
+  <body>
+    <form action="{% url 'about' %}" method="post">
+        {% csrf_token %}
+      <header>
+        <div class="head1">
+            <img src="{% static 'logo1.png' %}" alt="Vuva Ministries Logo">
+            <div class="text-block">
+            <h1>Village Under Vision of Almighty Ministries</h1>
+            <p>He who dwells in the shelter of the most high will abide in the shadow of the Almighty</p>
+            </div>
+        </div>
+        </header>
+        <header class="navbar">
+        <nav>
+            <ul class="nav-links">
+            <li><a href="{% url 'home' %}" class="home">Home</a></li>
+            <li><a href="{% url 'about' %}" class="about">About Us</a></li>
+            <li><a href="{% url 'services' %}" class="services">Services</a></li>
+            <li><a href="{% url 'contactus' %}" class="contact-button">Contact Us</a></li>
+            <li ><a href="{% url 'login' %}" class="login">Logout</a></li>
+            </ul>
+        </nav>
+        </header>
+        <section class="aboutus">
+
+            <div class="about-container">
+
+                <!-- LEFT SIDE IMAGE -->
+                <div class="about-image">
+                    <img src="{% static 'bannet.jpeg' %}" alt="VUVA Ministry">
+                </div>
+
+                <!-- RIGHT SIDE CONTENT -->
+                <div class="about-content">
+                    <h2>ABOUT VUVA MINISTRIES</h2>
+
+                    <p>
+                        <strong>Mr. Bannet Singh J. M.</strong> founded the YUVA
+                        (Youth Under Vision of Almighty) Ministries in 2010 with a vision
+                        to reach youngsters and spread the Gospel through outreach,
+                        children’s ministry, prison ministry, and youth gatherings.
+                    </p>
+
+                    <p>
+                        In 2012, the ministry was officially registered as
+                        <strong>Village Under Vision of Almighty Education and Charitable Trust</strong>
+                        and expanded its mission to Chidambaram village through the support
+                        of Mr. Allen Ferguson and Pastor Cibi.
+                    </p>
+
+                    <p>
+                        The ministry focused on church planting and community development,
+                        establishing churches and empowering local believers.
+                    </p>
+
+                    <p>
+                        In 2022, the organization evolved into two entities:
+                        <strong>VUVA Ministries</strong> for Gospel outreach and
+                        <strong>VUVA Charitable Trust</strong> for social service and humanitarian work.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- MISSION & VISION -->
+            <div class="statement-container">
+
+                <div class="statement-box mission">
+                    <h3>Our Mission</h3>
+                    <p>
+                        To serve communities by spreading faith, uplifting lives,
+                        supporting missionaries, and nurturing spiritual growth
+                        through ministry programs and outreach initiatives.
+                    </p>
+                </div>
+
+                <div class="statement-box vision">
+                    <h3>Our Vision</h3>
+                    <p><strong>Isaiah 43:10</strong></p>
+                    <p>
+                        “You are my witnesses,” declares the Lord.
+                    </p>
+                    <p>
+                        To build a Christ-centered community rooted in love,
+                        compassion, and service, inspiring people to live
+                        purposeful and faith-filled lives.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+        <footer>
+      <p>&copy; 2026 Village Under Vision Of Almighty Ministries. All Rights Reserved.</p>
+    </footer>
+        </form>
+  </body>
+</html>
